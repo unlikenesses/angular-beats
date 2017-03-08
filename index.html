@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>angular.beats</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/controls.css">
+</head>
+<body>
+	<h1>angular.beats</h1>
+	<div id="machine">
+		<div class="controls" ng-controller="ControlsController">
+			<a href="#" class="button" ng-click="togglePlay()">{{ buttonText }}</a> 
+			<a href="#" class="button" ng-click="clearPattern()">Clear Pattern</a> 
+			<div class="bpmRange">
+				<div class="bpmTitle">BPM:</div><input type="range" min="1" max="420" step="1" ng-model="bpm" ng-change="newRange()"><output for="bpm" id="bpmOutput">{{bpm}}</output>
+			</div>
+		</div>
+		<div ng-controller="TransporterController">
+			<div class="transporterContainer">
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporter" ng-style="{'left':currentPos * 100 + 'px'}">
+					<div class="transportLight transportLightActive"><div class="hilight"></div></div>
+				</div>
+			</div>
+		</div>
+		<div ng-controller="StaveController as staves">
+			<div ng-repeat="stave in staves.staves">
+				<div class="stave">
+					<div class="staveName">{{stave.name}}</div>
+					<div ng-repeat="note in stave.notes">
+						<div class="noteContainer">
+							<div class="note" ng-click="staves.toggleNote(stave.pos, note.pos)" ng-class="{active:staves.noteIsActive(stave.pos, note.pos)}"><div class="hilight"></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p class="credits">Built with <a href="https://angularjs.org" target="_blank">angular.js (1.6)</a></p>
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/howler.min.js"></script>
+    <script src="js/app/app.js"></script>
+    <script src="js/app/controllers/controlsController.js"></script>
+    <script src="js/app/controllers/transporterController.js"></script>
+    <script src="js/app/controllers/staveController.js"></script>
+    <script src="js/app/services/bpmService.js"></script>
+    <script src="js/app/services/notesService.js"></script>
+</body>
+</html>
