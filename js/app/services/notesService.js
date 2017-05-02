@@ -2,8 +2,8 @@ app.factory('NotesService', function() {
 
 	var NotesService = {};		
 	var bass = new Howl({src:['audio/Bass-Drum-1.mp3']});
-    var snare = new Howl({src:['audio/Hip-Hop-Snare-1.mp3']});
-    var hihat = new Howl({src:['audio/Closed-Hi-Hat-1.mp3']});
+	var snare = new Howl({src:['audio/Hip-Hop-Snare-1.mp3']});
+	var hihat = new Howl({src:['audio/Closed-Hi-Hat-1.mp3']});
 	var staves = [
 		{
 			'pos': 0,
