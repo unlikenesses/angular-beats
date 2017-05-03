@@ -6,6 +6,7 @@ app.factory('NotesService', function() {
 	var hihat = new Howl({src:['audio/Closed-Hi-Hat-1.mp3']});
 	var staves = [
 		{
+			'id': 1,
 			'pos': 0,
 			'name': 'Bass',
 			'sample': bass,
@@ -21,6 +22,7 @@ app.factory('NotesService', function() {
 			]
 		},
 		{
+			'id': 2,
 			'pos': 1,
 			'name': 'Snare',
 			'sample': snare,
@@ -36,6 +38,7 @@ app.factory('NotesService', function() {
 			]
 		},
 		{
+			'id': 3,
 			'pos': 2,
 			'name': 'Hihat',
 			'sample': hihat,
@@ -52,11 +55,18 @@ app.factory('NotesService', function() {
 		}
 	];
 	NotesService.getStaves = function() {
+		for (var stave of staves) {
+			let localStorageRef = localStorage.getItem('agjs-pattern-' + stave.id);
+			if (localStorageRef) {
+				stave.notes = JSON.parse(localStorageRef);
+			}
+		}
 		return staves;
 	};
 	NotesService.toggleNote = function(stavePos, notePos) {
 		var note = staves[stavePos].notes[notePos];
 		note.active = ! note.active;
+		this.savePatterns();
 	};
 	NotesService.checkSound = function(pos) {
 		for(var i = 0; i < staves.length; i++) {
@@ -74,7 +84,22 @@ app.factory('NotesService', function() {
 				note.active = false;
 			}
 		}
-	}
+		this.savePatterns();
+	};
+	NotesService.savePatterns = function() {
+		console.log('saving pattern');
+		for (var stave of staves) {
+			localStorage.setItem('agjs-pattern-' + stave.id, JSON.stringify(stave.notes));
+		}				
+	};
+	NotesService.restorePatterns = function() {
+		for (var stave of staves) {
+			let localStorageRef = localStorage.getItem('agjs-pattern-' + stave.id);
+			if (localStorageRef) {
+				stave.notes = JSON.parse(localStorageRef);
+			}
+		}
+	};
 
 	return NotesService;
 
