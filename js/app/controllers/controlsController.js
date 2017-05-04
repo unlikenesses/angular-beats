@@ -1,23 +1,23 @@
-app.controller('ControlsController', function($scope, $interval, NotesService, BpmService) {
+app.controller('ControlsController', function($interval, NotesService, BpmService) {
 
-	$scope.buttonText = 'Play';
-	$scope.bpm = BpmService.getBpm();
+	this.buttonText = 'Play';
+	this.bpm = BpmService.getBpm();
 
-	$scope.togglePlay = function() {
+	this.togglePlay = function() {
 		BpmService.toggleTicker();
 		if (BpmService.isPlaying()) {
-			$scope.buttonText = 'Stop';
+			this.buttonText = 'Stop';
 		} else {
-			$scope.buttonText = 'Play';
+			this.buttonText = 'Play';
 		}
 	}
 
-	$scope.clearPattern = function() {
+	this.clearPattern = function() {
 		NotesService.clearPattern();
 	}
 
-	$scope.newRange = function() {
-		BpmService.setBpm($scope.bpm);
+	this.newRange = function() {
+		BpmService.setBpm(this.bpm);
 	}
 
 });

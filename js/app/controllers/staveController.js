@@ -1,4 +1,4 @@
-app.controller('StaveController', function($scope, NotesService) {
+app.controller('StaveController', function(NotesService) {
 
 	this.toggleNote = function(stave, pos) {
 		NotesService.toggleNote(stave, pos);

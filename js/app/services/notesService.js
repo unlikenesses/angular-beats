@@ -87,7 +87,6 @@ app.factory('NotesService', function() {
 		this.savePatterns();
 	};
 	NotesService.savePatterns = function() {
-		console.log('saving pattern');
 		for (var stave of staves) {
 			localStorage.setItem('agjs-pattern-' + stave.id, JSON.stringify(stave.notes));
 		}				
