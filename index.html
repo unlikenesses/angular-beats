@@ -11,24 +11,24 @@
 	<h1>angular.beats</h1>
 	<div id="machine">
 		<div class="controls" ng-controller="ControlsController as controls">
-			<a href="#" class="button" ng-click="controls.togglePlay()">{{ controls.buttonText }}</a> 
-			<a href="#" class="button" ng-click="controls.clearPattern()">Clear Pattern</a> 
+			<a class="button" ng-click="controls.togglePlay()">{{ controls.buttonText }}</a> 
+			<a class="button" ng-click="controls.clearPattern()">Clear Pattern</a> 
 			<div class="bpmRange">
 				<div class="bpmTitle">BPM:</div><input type="range" min="1" max="420" step="1" ng-model="controls.bpm" ng-change="controls.newRange()"><output for="bpm" id="bpmOutput">{{controls.bpm}}</output>
 			</div>
 		</div>
 		<div ng-controller="TransporterController">
 			<div class="transporterContainer">
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
-				<div class="transporterOff"><div class="transportLight"><div class="hilight"></div></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
+				<div class="transporterOff"><div class="transportLight"></div></div>
 				<div class="transporter" ng-style="{'left':currentPos * 100 + 'px'}">
-					<div class="transportLight transportLightActive"><div class="hilight"></div></div>
+					<div class="transportLight transportLightActive"></div>
 				</div>
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 					<div class="staveName">{{stave.name}}</div>
 					<div ng-repeat="note in stave.notes">
 						<div class="noteContainer">
-							<div class="note" ng-click="staves.toggleNote(stave.pos, note.pos)" ng-class="{active:staves.noteIsActive(stave.pos, note.pos)}"><div class="hilight"></div></div>
+							<div class="note" ng-click="staves.toggleNote(stave.pos, note.pos)" ng-class="{active:staves.noteIsActive(stave.pos, note.pos)}"></div>
 						</div>
 					</div>
 				</div>
